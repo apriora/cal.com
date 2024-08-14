@@ -76,3 +76,9 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           body: |
             - [Attempt #${{ github.run_number }}.${{ github.run_attempt }} results](${{ steps.url.outputs.link }})
+      - uses: LouisBrunner/checks-action@v2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Latest E2E results
+          conclusion: ${{ job.status }}
+          details_url: ${{ steps.url.outputs.link }}
